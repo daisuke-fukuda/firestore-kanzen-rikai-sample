@@ -4,6 +4,6 @@ services:
     build: app
     tty: true
     volumes:
-    - ./node/app:/app:cached
+    - ./app:/app:cached
     ports:
     - "8080:3000"
