@@ -82,7 +82,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    // extend(config, ctx) {}
   },
   server: {
     host: '0.0.0.0'
