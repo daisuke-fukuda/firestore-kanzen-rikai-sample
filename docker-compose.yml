@@ -6,4 +6,4 @@ services:
     volumes:
     - ./app:/app:cached
     ports:
-    - "8080:3000"
+    - "3000:3000"

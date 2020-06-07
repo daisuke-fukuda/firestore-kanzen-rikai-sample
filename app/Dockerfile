@@ -6,7 +6,12 @@ FROM node:14.4.0-alpine3.10
 ENV NODE_ENV=development
 
 # 雛形を生成するのに必要なパッケージのインストール
-#sRUN npm install -g express-generator@4.16.0
+RUN npm install -g create-nuxt-app
+RUN apk update && apk add \
+    python\
+    make\
+    g++
+
 
 # ディレクトリを移動する
 WORKDIR /app
