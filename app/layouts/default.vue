@@ -43,11 +43,11 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'index',
           to: '/'
         }
       ],
-      title: 'Vuetify.js'
+      title: 'Firestore sample'
     }
   }
 }
