@@ -1,0 +1,91 @@
+<template>
+  <v-container fluid>
+    <v-row dense>
+      <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
+        <v-card class="mx-auto" max-width="344">
+          <v-img
+            :src="card.src"
+            class="white--text align-end"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="200px"
+          ></v-img>
+
+          <v-card-title v-text="card.title"></v-card-title>
+
+          <v-card-subtitle>
+            {{ card.subTitle }}
+          </v-card-subtitle>
+
+          <v-card-actions>
+            <v-btn text>Share</v-btn>
+
+            <v-btn color="purple" text>
+              Explore
+            </v-btn>
+
+            <v-spacer></v-spacer>
+
+            <v-spacer></v-spacer>
+
+            <v-btn icon>
+              <v-icon>mdi-heart</v-icon>
+            </v-btn>
+
+            <v-btn icon>
+              <v-icon>mdi-bookmark</v-icon>
+            </v-btn>
+
+            <v-btn icon>
+              <v-icon>mdi-share-variant</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    cards: [
+      {
+        title: 'Pre-fab homes',
+        subTitle: 'testtesttest',
+        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
+        flex: 4
+      },
+      {
+        title: 'Favorite road trips',
+        subTitle: 'testtesttest',
+        src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
+        flex: 4
+      },
+      {
+        title: 'Best airlines',
+        subTitle: 'testtesttest',
+        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+        flex: 4
+      },
+      {
+        title: 'Best airlines',
+        subTitle: 'testtesttest',
+        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+        flex: 4
+      },
+      {
+        title: 'Best airlines',
+        subTitle: 'testtesttest',
+        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+        flex: 4
+      },
+      {
+        title: 'Best airlines',
+        subTitle: 'testtesttest',
+        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+        flex: 4
+      }
+    ]
+  })
+}
+</script>
