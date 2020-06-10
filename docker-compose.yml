@@ -7,3 +7,4 @@ services:
     - ./app:/app:cached
     ports:
     - "3000:3000"
+    command: /bin/sh -c "npm install; npm run dev"
