@@ -34,7 +34,7 @@
       </v-col>
     </v-row>
 
-    <v-btn>購入する</v-btn>
+    <v-btn to="/thanks">購入する</v-btn>
   </v-container>
 </template>
 

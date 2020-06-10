@@ -1,5 +1,9 @@
 <template>
   <v-container fluid>
+    <v-btn to="/products" class="mb-5">
+      戻る
+    </v-btn>
+
     <v-card class="mx-auto" max-width="1200">
       <v-img
         :src="card.src"
@@ -17,7 +21,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="primary">
-          購入する
+          カートに入れる
         </v-btn>
       </v-card-actions>
     </v-card>

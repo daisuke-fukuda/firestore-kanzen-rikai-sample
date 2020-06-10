@@ -3,12 +3,15 @@
     <v-row dense>
       <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
         <v-card class="mx-auto" max-width="344">
-          <v-img
-            :src="card.src"
-            class="white--text align-end"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="200px"
-          ></v-img>
+          <nuxt-link to="/products/hoge">
+            <v-img
+              to="/products/hoge"
+              :src="card.src"
+              class="white--text align-end"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              height="200px"
+            ></v-img>
+          </nuxt-link>
 
           <v-card-title v-text="card.title"></v-card-title>
 
@@ -17,10 +20,8 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn text>Share</v-btn>
-
-            <v-btn color="purple" text>
-              Explore
+            <v-btn to="/products/hoge">
+              詳細
             </v-btn>
 
             <v-spacer></v-spacer>
