@@ -1,44 +1,46 @@
 import firebase from '~/plugins/firebase'
 
 export const state = () => ({
-  uid: '',
-  displayName: ''
+  displayName: '',
+  uid: ''
 })
 
 export const mutations = {
-  setUid(state, uid) {
+  setUser(state, { displayName, uid }) {
+    state.displayName = displayName
     state.uid = uid
   },
-  setDisplayName(state, displayName) {
-    state.displayName = displayName
+  clearUser(state) {
+    state.displayName = ''
+    state.uid = ''
   }
 }
 
 export const actions = {
-  login({ commit }) {
-    console.log('login action')
+  autoSignIn({ commit }, payload) {
+    commit('setUser', payload)
+  },
+
+  signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider()
+    return new Promise((resolve) => {
+      firebase.auth().signInWithRedirect(provider)
+      resolve()
+    })
+  },
+
+  signOut({ commit }) {
     firebase
       .auth()
-      .signInWithPopup(provider)
-      .then(function(result) {
-        const user = result.user
-        console.log('success : ', user)
-        commit('setUid', user.uid)
-        commit('setDisplayName', user.displayName)
-      })
-      .catch(function(error) {
-        const errorCode = error.code
-        console.log('error : ', errorCode)
+      .signOut()
+      .then(() => {
+        commit('clearUser')
       })
   }
 }
 
 export const getters = {
-  getUid(state) {
-    return state.uid
-  },
-  getDisplayName(state) {
-    return state.displayName
+  getUser: (state) => {
+    return { displayName: state.displayName, uid: state.uid }
   }
 }
