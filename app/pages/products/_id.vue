@@ -128,9 +128,31 @@
   </v-container>
 </template>
 
-<script>
-export default {
-  data: () => ({
+<script lang="ts">
+import Vue from 'vue';
+
+interface Card {
+  title: string;
+  subTitle: string;
+  src: string;
+  flex: number;
+}
+
+interface Data {
+  card: Card;
+  reviews: Review[];
+  dialog: boolean;
+}
+
+interface Review {
+  user: string;
+  title: string;
+  createdAt: string;
+  body: string;
+}
+
+export default Vue.extend({
+  data: (): Data => ({
     card: {
       title: 'Best airlines',
       subTitle: 'testtesttest',
@@ -159,5 +181,5 @@ export default {
     ],
     dialog: false,
   }),
-};
+});
 </script>

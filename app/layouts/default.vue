@@ -46,9 +46,23 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  data() {
+<script lang="ts">
+import Vue from 'vue';
+
+interface Item {
+  icon: string;
+  title: string;
+  to: string;
+}
+
+interface Data {
+  drawer: boolean;
+  items: Item[];
+  title: string;
+}
+
+export default Vue.extend({
+  data(): Data {
     return {
       drawer: false,
       items: [
@@ -71,5 +85,5 @@ export default {
       title: 'Firestore sample',
     };
   },
-};
+});
 </script>

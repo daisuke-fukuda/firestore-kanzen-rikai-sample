@@ -38,9 +38,22 @@
   </v-container>
 </template>
 
-<script>
-export default {
-  data: () => ({
+<script lang="ts">
+import Vue from 'vue';
+
+interface Card {
+  title: string;
+  subTitle: string;
+  src: string;
+  count: number;
+}
+
+interface Data {
+  cards: Card[];
+}
+
+export default Vue.extend({
+  data: (): Data => ({
     cards: [
       {
         title: 'Pre-fab homes',
@@ -68,5 +81,5 @@ export default {
       },
     ],
   }),
-};
+});
 </script>

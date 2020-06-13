@@ -11,22 +11,22 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
   computed: {
-    displayName() {
-      return this.$store.getters.getUser
-        ? this.$store.getters.getUser.displayName
-        : '';
+    displayName(): string {
+      return this.$store.getters.getUser?.displayName as string;
     },
   },
   methods: {
-    login() {
+    login(): void {
       this.$store.dispatch('signInWithGoogle');
     },
-    logout() {
+    logout(): void {
       this.$store.dispatch('signOut');
     },
   },
-};
+});
 </script>
