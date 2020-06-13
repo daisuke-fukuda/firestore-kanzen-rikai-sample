@@ -27,9 +27,29 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon to="/cart">
+      <v-btn class="mr-5" icon to="/cart">
         <v-icon>mdi-cart</v-icon>
       </v-btn>
+
+      <v-menu v-if="$store.getters.isLogin" offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
+            <v-avatar color="red">
+              <span class="white--text headline">
+                {{ iconName }}
+              </span>
+            </v-avatar>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item @click="logout">
+            <v-list-item-title>ログアウト</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <v-btn v-else @click="login">ログイン</v-btn>
     </v-app-bar>
 
     <!--    content -->
@@ -84,6 +104,24 @@ export default Vue.extend({
       ],
       title: 'Firestore sample',
     };
+  },
+  computed: {
+    iconName(): string {
+      const name: string = this.$store.getters.getUser.displayName as string;
+      if (!name) {
+        return '';
+      }
+      return name.substr(0, 1);
+    },
+  },
+  methods: {
+    login(): void {
+      this.$store.dispatch('signInWithGoogle');
+    },
+    logout(): void {
+      this.$store.dispatch('signOut');
+      this.$router.push('/');
+    },
   },
 });
 </script>

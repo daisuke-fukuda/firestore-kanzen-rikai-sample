@@ -1,10 +1,11 @@
 <template>
   <div>
-    <p>user: {{ displayName }}</p>
+    <div v-if="$store.getters.isLogin">
+      <p>
+        <nuxt-link to="/products">商品一覧</nuxt-link>
+      </p>
+    </div>
 
-    <v-btn v-if="$store.getters.isLogin" color="warning" @click="logout">
-      ログアウト
-    </v-btn>
     <v-btn v-else color="primary" @click="login">
       ログイン
     </v-btn>
