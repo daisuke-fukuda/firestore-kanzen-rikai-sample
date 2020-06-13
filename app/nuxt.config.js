@@ -12,10 +12,10 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
@@ -36,7 +36,7 @@ export default {
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
   ],
   /*
    ** Nuxt.js modules
@@ -45,7 +45,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
   ],
   /*
    ** Axios module configuration
@@ -58,7 +58,7 @@ export default {
    */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    theme: {}
+    theme: {},
   },
   /*
    ** Build configuration
@@ -70,10 +70,10 @@ export default {
     // extend(config, ctx) {}
   },
   server: {
-    host: '0.0.0.0'
+    host: '0.0.0.0',
   },
   router: {
-    middleware: 'router-auth'
+    middleware: 'router-auth',
   },
   /*
    ** Build configuration
@@ -85,6 +85,6 @@ export default {
     PROJECT_ID: process.env.PROJECT_ID,
     STORAGE_BUCKET: process.env.STORAGE_BUCKET,
     MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID,
-    APP_ID: process.env.APP_ID
-  }
-}
+    APP_ID: process.env.APP_ID,
+  },
+};

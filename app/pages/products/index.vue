@@ -54,39 +54,39 @@ export default {
         title: 'Pre-fab homes',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        flex: 4
+        flex: 4,
       },
       {
         title: 'Favorite road trips',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
-        flex: 4
+        flex: 4,
       },
       {
         title: 'Best airlines',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 4
+        flex: 4,
       },
       {
         title: 'Best airlines',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 4
+        flex: 4,
       },
       {
         title: 'Best airlines',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 4
+        flex: 4,
       },
       {
         title: 'Best airlines',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 4
-      }
-    ]
-  })
-}
+        flex: 4,
+      },
+    ],
+  }),
+};
 </script>

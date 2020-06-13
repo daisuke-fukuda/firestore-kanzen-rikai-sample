@@ -103,7 +103,7 @@
                       'Reading',
                       'Writing',
                       'Coding',
-                      'Basejump'
+                      'Basejump',
                     ]"
                     label="Interests"
                     multiple
@@ -135,29 +135,29 @@ export default {
       title: 'Best airlines',
       subTitle: 'testtesttest',
       src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-      flex: 4
+      flex: 4,
     },
     reviews: [
       {
         user: 'テストユーザー',
         title: 'レビューたいとる',
         createdAt: '2020/XX/XX',
-        body: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        body: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       },
       {
         user: 'テストユーザー',
         title: 'Pre-fab homes',
         createdAt: '2020/XX/XX',
-        body: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        body: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       },
       {
         user: 'テストユーザー',
         title: 'Pre-fab homes',
         createdAt: '2020/XX/XX',
-        body: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-      }
+        body: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      },
     ],
-    dialog: false
-  })
-}
+    dialog: false,
+  }),
+};
 </script>

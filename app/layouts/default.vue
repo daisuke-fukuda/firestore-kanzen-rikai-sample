@@ -55,21 +55,21 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'index',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-shopping',
           title: '商品一覧',
-          to: '/products'
+          to: '/products',
         },
         {
           icon: 'mdi-cart',
           title: 'カート',
-          to: '/cart'
-        }
+          to: '/cart',
+        },
       ],
-      title: 'Firestore sample'
-    }
-  }
-}
+      title: 'Firestore sample',
+    };
+  },
+};
 </script>

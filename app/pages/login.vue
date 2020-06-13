@@ -17,16 +17,16 @@ export default {
     displayName() {
       return this.$store.getters.getUser
         ? this.$store.getters.getUser.displayName
-        : ''
-    }
+        : '';
+    },
   },
   methods: {
     login() {
-      this.$store.dispatch('signInWithGoogle')
+      this.$store.dispatch('signInWithGoogle');
     },
     logout() {
-      this.$store.dispatch('signOut')
-    }
-  }
-}
+      this.$store.dispatch('signOut');
+    },
+  },
+};
 </script>

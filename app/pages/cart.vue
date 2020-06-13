@@ -46,27 +46,27 @@ export default {
         title: 'Pre-fab homes',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        count: 1
+        count: 1,
       },
       {
         title: 'Favorite road trips',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
-        count: 1
+        count: 1,
       },
       {
         title: 'Best airlines',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        count: 2
+        count: 2,
       },
       {
         title: 'Best airlines',
         subTitle: 'testtesttest',
         src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        count: 2
-      }
-    ]
-  })
-}
+        count: 2,
+      },
+    ],
+  }),
+};
 </script>
