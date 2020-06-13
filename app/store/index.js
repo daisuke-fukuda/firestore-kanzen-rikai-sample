@@ -42,5 +42,8 @@ export const actions = {
 export const getters = {
   getUser: (state) => {
     return { displayName: state.displayName, uid: state.uid }
+  },
+  isLogin: (state) => {
+    return !!state.uid
   }
 }

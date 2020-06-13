@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
-    <p class="title is-1 is-spaced">user: {{ displayName }}</p>
-    <button class="button is-primary is-rounded" @click="login">
-      ログイン
-    </button>
+  <div>
+    <p>user: {{ displayName }}</p>
 
-    <button class="button is-primary is-rounded" @click="logout">
+    <v-btn v-if="$store.getters.isLogin" color="warning" @click="logout">
       ログアウト
-    </button>
+    </v-btn>
+    <v-btn v-else color="primary" @click="login">
+      ログイン
+    </v-btn>
   </div>
 </template>
 
