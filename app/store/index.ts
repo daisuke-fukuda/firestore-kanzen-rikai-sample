@@ -1,3 +1,4 @@
+import { GetterTree, ActionTree, MutationTree } from 'vuex';
 import firebase from '~/plugins/firebase';
 
 export const state = () => ({
@@ -5,7 +6,9 @@ export const state = () => ({
   uid: '',
 });
 
-export const mutations = {
+export type RootState = ReturnType<typeof state>;
+
+export const mutations: MutationTree<RootState> = {
   setUser(state, { displayName, uid }) {
     state.displayName = displayName;
     state.uid = uid;
@@ -16,7 +19,7 @@ export const mutations = {
   },
 };
 
-export const actions = {
+export const actions: ActionTree<RootState, RootState> = {
   autoSignIn({ commit }, payload) {
     commit('setUser', payload);
   },
@@ -39,7 +42,7 @@ export const actions = {
   },
 };
 
-export const getters = {
+export const getters: GetterTree<RootState, RootState> = {
   getUser: (state) => {
     return { displayName: state.displayName, uid: state.uid };
   },

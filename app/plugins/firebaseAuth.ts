@@ -1,6 +1,7 @@
+import { Middleware } from '@nuxt/types';
 import firebase from '~/plugins/firebase';
 
-export default (context) => {
+const firebaseAuth: Middleware = (context) => {
   const { store } = context;
 
   return new Promise((resolve) => {
@@ -14,3 +15,5 @@ export default (context) => {
     });
   });
 };
+
+export default firebaseAuth;
