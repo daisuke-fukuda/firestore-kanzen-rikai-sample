@@ -135,7 +135,7 @@ import {
   onMounted,
   toRefs,
 } from 'nuxt-composition-api';
-import { Product } from '~/services/product';
+import { find, Product } from '~/services/product';
 
 interface Review {
   user: string;
@@ -168,20 +168,14 @@ export default defineComponent({
     ];
 
     const state = reactive({
-      product: {} as Product,
+      product: {} as Partial<Product>,
       reviews,
       dialog: false,
     });
 
     onMounted(async () => {
       const id = context.root.$route.params.id;
-      const snapshot = await context.root.$db
-        .collection('products')
-        .doc(id)
-        .get();
-      if (snapshot.exists) {
-        state.product = snapshot.data() as Product;
-      }
+      state.product = await find(context.root.$db, id);
     });
 
     return {

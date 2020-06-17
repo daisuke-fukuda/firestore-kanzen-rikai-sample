@@ -52,7 +52,7 @@ import {
   onMounted,
   toRefs,
 } from 'nuxt-composition-api';
-import { Product } from '~/services/product';
+import { findAll, Product } from '~/services/product';
 
 export default defineComponent({
   setup(_, context) {
@@ -61,10 +61,7 @@ export default defineComponent({
     });
 
     onMounted(async () => {
-      const snapshot = await context.root.$db.collection('products').get();
-      snapshot.forEach((doc) => {
-        state.products.push({ ...doc.data(), id: doc.id } as Product);
-      });
+      state.products = await findAll(context.root.$db);
     });
 
     return {
