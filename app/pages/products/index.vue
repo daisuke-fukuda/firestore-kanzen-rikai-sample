@@ -47,32 +47,30 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent, reactive, onMounted } from 'nuxt-composition-api';
+
+export default defineComponent({
+  setup(_, context) {
+    const state = reactive({
+      cards: [] as Card[],
+    });
+
+    onMounted(async () => {
+      const snapshot = await context.root.$db.collection('products').get();
+      snapshot.forEach((doc) => {
+        state.cards.push(doc.data() as Card);
+      });
+    });
+
+    return {
+      ...state,
+    };
+  },
+});
 
 interface Card {
   name: string;
   description: string;
   photoURL: string;
 }
-
-interface Data {
-  cards: Card[];
-}
-
-export default Vue.extend({
-  data: (): Data => ({
-    cards: [],
-  }),
-  mounted() {
-    this.getItems();
-  },
-  methods: {
-    async getItems() {
-      const snapshot = await this.$db.collection('products').get();
-      snapshot.forEach((doc) => {
-        this.cards.push(doc.data() as Card);
-      });
-    },
-  },
-});
 </script>
