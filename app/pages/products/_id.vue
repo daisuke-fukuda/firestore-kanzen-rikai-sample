@@ -6,16 +6,16 @@
 
     <v-card class="mx-auto" max-width="1200">
       <v-img
-        :src="card.photoURL"
+        :src="product.photoURL"
         class="white--text align-end"
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
         height="200px"
       ></v-img>
 
-      <v-card-title v-text="card.name"></v-card-title>
+      <v-card-title v-text="product.name"></v-card-title>
 
       <v-card-subtitle>
-        {{ card.description }}
+        {{ product.description }}
       </v-card-subtitle>
 
       <v-card-actions>
@@ -135,7 +135,7 @@ import {
   onMounted,
   toRefs,
 } from 'nuxt-composition-api';
-import { Card } from '~/services/card';
+import { Product } from '~/services/product';
 
 interface Review {
   user: string;
@@ -168,7 +168,7 @@ export default defineComponent({
     ];
 
     const state = reactive({
-      card: {} as Card,
+      product: {} as Product,
       reviews,
       dialog: false,
     });
@@ -180,7 +180,7 @@ export default defineComponent({
         .doc(id)
         .get();
       if (snapshot.exists) {
-        state.card = snapshot.data() as Card;
+        state.product = snapshot.data() as Product;
       }
     });
 

@@ -1,25 +1,25 @@
 <template>
   <v-container fluid>
     <v-row dense>
-      <v-col v-for="card in cards" :key="card.name" cols="4">
+      <v-col v-for="product in products" :key="product.name" cols="4">
         <v-card class="mx-auto" max-width="344">
-          <nuxt-link :to="`/products/${card.id}`">
+          <nuxt-link :to="`/products/${product.id}`">
             <v-img
-              :src="card.photoURL"
+              :src="product.photoURL"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
             ></v-img>
           </nuxt-link>
 
-          <v-card-title v-text="card.name"></v-card-title>
+          <v-card-title v-text="product.name"></v-card-title>
 
           <v-card-subtitle>
-            {{ card.description }}
+            {{ product.description }}
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn :to="`/products/${card.id}`">
+            <v-btn :to="`/products/${product.id}`">
               詳細
             </v-btn>
 
@@ -52,18 +52,18 @@ import {
   onMounted,
   toRefs,
 } from 'nuxt-composition-api';
-import { Card } from '~/services/card';
+import { Product } from '~/services/product';
 
 export default defineComponent({
   setup(_, context) {
     const state = reactive({
-      cards: [] as Card[],
+      products: [] as Product[],
     });
 
     onMounted(async () => {
       const snapshot = await context.root.$db.collection('products').get();
       snapshot.forEach((doc) => {
-        state.cards.push({ ...doc.data(), id: doc.id } as Card);
+        state.products.push({ ...doc.data(), id: doc.id } as Product);
       });
     });
 
