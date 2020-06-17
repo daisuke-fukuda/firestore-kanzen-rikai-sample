@@ -1,22 +1,22 @@
 <template>
   <v-container fluid>
     <v-row dense>
-      <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
+      <v-col v-for="card in cards" :key="card.name" cols="4">
         <v-card class="mx-auto" max-width="344">
           <nuxt-link to="/products/hoge">
             <v-img
               to="/products/hoge"
-              :src="card.src"
+              :src="card.photoURL"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
             ></v-img>
           </nuxt-link>
 
-          <v-card-title v-text="card.title"></v-card-title>
+          <v-card-title v-text="card.name"></v-card-title>
 
           <v-card-subtitle>
-            {{ card.subTitle }}
+            {{ card.description }}
           </v-card-subtitle>
 
           <v-card-actions>
@@ -50,10 +50,9 @@
 import Vue from 'vue';
 
 interface Card {
-  title: string;
-  subTitle: string;
-  src: string;
-  flex: number;
+  name: string;
+  description: string;
+  photoURL: string;
 }
 
 interface Data {
@@ -62,44 +61,18 @@ interface Data {
 
 export default Vue.extend({
   data: (): Data => ({
-    cards: [
-      {
-        title: 'Pre-fab homes',
-        subTitle: 'testtesttest',
-        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        flex: 4,
-      },
-      {
-        title: 'Favorite road trips',
-        subTitle: 'testtesttest',
-        src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
-        flex: 4,
-      },
-      {
-        title: 'Best airlines',
-        subTitle: 'testtesttest',
-        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 4,
-      },
-      {
-        title: 'Best airlines',
-        subTitle: 'testtesttest',
-        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 4,
-      },
-      {
-        title: 'Best airlines',
-        subTitle: 'testtesttest',
-        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 4,
-      },
-      {
-        title: 'Best airlines',
-        subTitle: 'testtesttest',
-        src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        flex: 4,
-      },
-    ],
+    cards: [],
   }),
+  mounted() {
+    this.getItems();
+  },
+  methods: {
+    async getItems() {
+      const snapshot = await this.$db.collection('products').get();
+      snapshot.forEach((doc) => {
+        this.cards.push(doc.data() as Card);
+      });
+    },
+  },
 });
 </script>
