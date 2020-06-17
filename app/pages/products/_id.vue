@@ -6,16 +6,16 @@
 
     <v-card class="mx-auto" max-width="1200">
       <v-img
-        :src="card.src"
+        :src="card.photoURL"
         class="white--text align-end"
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
         height="200px"
       ></v-img>
 
-      <v-card-title v-text="card.title"></v-card-title>
+      <v-card-title v-text="card.name"></v-card-title>
 
       <v-card-subtitle>
-        {{ card.subTitle }}
+        {{ card.description }}
       </v-card-subtitle>
 
       <v-card-actions>
@@ -116,11 +116,11 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="dialog = false"
-              >Close</v-btn
-            >
+              >Close
+            </v-btn>
             <v-btn color="blue darken-1" text @click="dialog = false"
-              >Save</v-btn
-            >
+              >Save
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -129,20 +129,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-
-interface Card {
-  title: string;
-  subTitle: string;
-  src: string;
-  flex: number;
-}
-
-interface Data {
-  card: Card;
-  reviews: Review[];
-  dialog: boolean;
-}
+import {
+  defineComponent,
+  reactive,
+  onMounted,
+  toRefs,
+} from 'nuxt-composition-api';
+import { Card } from '~/services/card';
 
 interface Review {
   user: string;
@@ -151,15 +144,9 @@ interface Review {
   body: string;
 }
 
-export default Vue.extend({
-  data: (): Data => ({
-    card: {
-      title: 'Best airlines',
-      subTitle: 'testtesttest',
-      src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-      flex: 4,
-    },
-    reviews: [
+export default defineComponent({
+  setup(_, context) {
+    const reviews: Review[] = [
       {
         user: 'テストユーザー',
         title: 'レビューたいとる',
@@ -178,8 +165,28 @@ export default Vue.extend({
         createdAt: '2020/XX/XX',
         body: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       },
-    ],
-    dialog: false,
-  }),
+    ];
+
+    const state = reactive({
+      card: {} as Card,
+      reviews,
+      dialog: false,
+    });
+
+    onMounted(async () => {
+      const id = context.root.$route.params.id;
+      const snapshot = await context.root.$db
+        .collection('products')
+        .doc(id)
+        .get();
+      if (snapshot.exists) {
+        state.card = snapshot.data() as Card;
+      }
+    });
+
+    return {
+      ...toRefs(state),
+    };
+  },
 });
 </script>

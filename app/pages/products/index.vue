@@ -3,9 +3,8 @@
     <v-row dense>
       <v-col v-for="card in cards" :key="card.name" cols="4">
         <v-card class="mx-auto" max-width="344">
-          <nuxt-link to="/products/hoge">
+          <nuxt-link :to="`/products/${card.id}`">
             <v-img
-              to="/products/hoge"
               :src="card.photoURL"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
@@ -20,7 +19,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn to="/products/hoge">
+            <v-btn :to="`/products/${card.id}`">
               詳細
             </v-btn>
 
@@ -47,7 +46,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onMounted } from 'nuxt-composition-api';
+import {
+  defineComponent,
+  reactive,
+  onMounted,
+  toRefs,
+} from 'nuxt-composition-api';
+import { Card } from '~/services/card';
 
 export default defineComponent({
   setup(_, context) {
@@ -58,19 +63,13 @@ export default defineComponent({
     onMounted(async () => {
       const snapshot = await context.root.$db.collection('products').get();
       snapshot.forEach((doc) => {
-        state.cards.push(doc.data() as Card);
+        state.cards.push({ ...doc.data(), id: doc.id } as Card);
       });
     });
 
     return {
-      ...state,
+      ...toRefs(state),
     };
   },
 });
-
-interface Card {
-  name: string;
-  description: string;
-  photoURL: string;
-}
 </script>
