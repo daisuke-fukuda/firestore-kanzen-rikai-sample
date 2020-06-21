@@ -32,6 +32,13 @@ export const actions: ActionTree<RootState, RootState> = {
     });
   },
 
+  signInWithTwitter() {
+    const provider = new firebase.auth.TwitterAuthProvider();
+    return new Promise((resolve) => {
+      firebase.auth().signInWithRedirect(provider);
+      resolve();
+    });
+  },
   signOut({ commit }) {
     firebase
       .auth()

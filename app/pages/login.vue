@@ -23,7 +23,7 @@ export default Vue.extend({
   },
   methods: {
     login(): void {
-      this.$store.dispatch('signInWithGoogle');
+      this.$store.dispatch('signInWithTwitter');
     },
     logout(): void {
       this.$store.dispatch('signOut');
