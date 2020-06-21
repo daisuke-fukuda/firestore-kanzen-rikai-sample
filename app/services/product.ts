@@ -1,3 +1,5 @@
+import { FirestoreSimple } from '@firestore-simple/web';
+
 export interface Product {
   id: string;
   name: string;
@@ -6,21 +8,12 @@ export interface Product {
 }
 
 export const findAll = async (db: firebase.firestore.Firestore) => {
-  const snapshot = await db.collection('products').get();
-  const result: Product[] = [];
-  snapshot.forEach((doc) => {
-    result.push({ ...doc.data(), id: doc.id } as Product);
-  });
-  return result;
+  const firestoreSimple = new FirestoreSimple(db);
+  const dao = firestoreSimple.collection<Product>({ path: `products` });
+  return await dao.fetchAll();
 };
 export const find = async (db: firebase.firestore.Firestore, id: string) => {
-  const snapshot = await db
-    .collection('products')
-    .doc(id)
-    .get();
-  if (snapshot.exists) {
-    return snapshot.data() as Product;
-  } else {
-    return {};
-  }
+  const firestoreSimple = new FirestoreSimple(db);
+  const dao = firestoreSimple.collection<Product>({ path: `products` });
+  return await dao.fetch(id);
 };

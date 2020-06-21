@@ -168,7 +168,7 @@ export default defineComponent({
     ];
 
     const state = reactive({
-      product: {} as Partial<Product>,
+      product: {} as Partial<Product> | undefined,
       reviews,
       dialog: false,
     });

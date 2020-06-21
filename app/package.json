@@ -23,6 +23,7 @@
     }
   },
   "dependencies": {
+    "@firestore-simple/web": "^7.0.1",
     "@nuxt/typescript-runtime": "^0.4.0",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
