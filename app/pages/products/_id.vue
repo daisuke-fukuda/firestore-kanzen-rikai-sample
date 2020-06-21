@@ -135,7 +135,7 @@ import {
   onMounted,
   toRefs,
 } from 'nuxt-composition-api';
-import { find, Product } from '~/services/product';
+import { Product, ProductRepository } from '~/services/product';
 
 interface Review {
   user: string;
@@ -175,7 +175,8 @@ export default defineComponent({
 
     onMounted(async () => {
       const id = context.root.$route.params.id;
-      state.product = await find(context.root.$db, id);
+      const productRepository = new ProductRepository(context.root.$db);
+      state.product = await productRepository.find(id);
     });
 
     return {

@@ -7,13 +7,19 @@ export interface Product {
   photoURL: string;
 }
 
-export const findAll = async (db: firebase.firestore.Firestore) => {
-  const firestoreSimple = new FirestoreSimple(db);
-  const dao = firestoreSimple.collection<Product>({ path: `products` });
-  return await dao.fetchAll();
-};
-export const find = async (db: firebase.firestore.Firestore, id: string) => {
-  const firestoreSimple = new FirestoreSimple(db);
-  const dao = firestoreSimple.collection<Product>({ path: `products` });
-  return await dao.fetch(id);
-};
+export class ProductRepository {
+  private firestoreSimple: FirestoreSimple;
+  constructor(private readonly db: firebase.firestore.Firestore) {
+    this.firestoreSimple = new FirestoreSimple(db);
+  }
+
+  public findAll = async () => {
+    const dao = this.firestoreSimple.collection<Product>({ path: `products` });
+    return await dao.fetchAll();
+  };
+
+  public find = async (id: string) => {
+    const dao = this.firestoreSimple.collection<Product>({ path: `products` });
+    return await dao.fetch(id);
+  };
+}

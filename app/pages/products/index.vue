@@ -52,7 +52,7 @@ import {
   onMounted,
   toRefs,
 } from 'nuxt-composition-api';
-import { findAll, Product } from '~/services/product';
+import { Product, ProductRepository } from '~/services/product';
 
 export default defineComponent({
   setup(_, context) {
@@ -61,7 +61,8 @@ export default defineComponent({
     });
 
     onMounted(async () => {
-      state.products = await findAll(context.root.$db);
+      const productRepository = new ProductRepository(context.root.$db);
+      state.products = await productRepository.findAll();
     });
 
     return {
